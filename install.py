@@ -3,7 +3,10 @@
 
 import argparse, os, shutil, sys
 
-#if __name__ == '__main__':
+if __name__ != '__main__':
+    print('This module will not run')
+    sys.exit()
+
 try:
     print('installing AElfi tools ...')
 
@@ -91,11 +94,11 @@ as it does when done by the user. To install aelfi tools with the ``aelfi" comma
         print('aelfi command installed ...')
     input('\nfinished!\n\nclose? [press <Enter>]')
 except BaseException as e:
-    print('---')
+    print('\n---')
     print(repr(e))
     print(e)
     
-    input('AHHHH!!!!')
+    input('\nAHHHH!!!!')
     
         
         

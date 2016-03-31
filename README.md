@@ -12,12 +12,21 @@ aelfi project -d /var/www/myproject build               # Build a project at the
 ```
 
 #### Install
-Download current project from GitHub, then follow below instructions:
+Download current project from GitHub directly here.
+ 
+If you use the Linux command line, you could also do it with the following commands:
+```bash
+wget https://github.com/mrRachar/AElfi-tools/archive/master.zip
+unzip AElfi-tools-master.zip
+```
+
+Then use the instructions below to install it.
+
 
 ##### Windows
 Run `install_windows.bat` and follow the instructions
 
-*or with administrator privilages run `python3 install.py`*
+*or with administrator privilages run `python3 install.py`*.
 
 ##### Linux
 Run `sudo python3 install.py` which will do everything for you!
