@@ -17,7 +17,7 @@ Download current project from GitHub directly here.
 If you use the Linux command line, you could also do it with the following commands:
 ```bash
 wget https://github.com/mrRachar/AElfi-tools/archive/master.zip
-unzip AElfi-tools-master.zip
+unzip master.zip
 ```
 
 Then use the instructions below to install it.
