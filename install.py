@@ -89,7 +89,7 @@ as it does when done by the user. To install aelfi tools with the ``aelfi" comma
 
     elif arguments.os == 'posix':
         with open(arguments.directory + '/aelfi', 'w') as command_file:
-            command_file.write('"' + arguments.directory + '/aelfi-tools' '/aelfi.py" $@')
+            command_file.write('python3 "' + arguments.directory + '/aelfi-tools' '/aelfi.py" $@')
         os.chmod(arguments.directory + '/aelfi', 0o755)
         print('aelfi command installed ...')
     input('\nfinished!\n\nclose? [press <Enter>]')

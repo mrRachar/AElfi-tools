@@ -38,7 +38,7 @@ if __name__ == '__main__':
     utility.run(utility_arg_list)
 
 def run(args):
-    print(r"""\nYou found him!
+    print(r"""You found him!
 
 
                                        |\      /|
