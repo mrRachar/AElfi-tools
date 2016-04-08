@@ -69,6 +69,10 @@ def make(location, version, get=None):
 
     os.replace(location + '_make_temp' '/AElfi/AElfi-{v}'.format(v=version), location + '/')
     shutil.rmtree(location + '_make_temp')
+
+    for dirname, dirs, files in os.walk(location + '/'):
+        for file in files:
+            os.chmod(file, 0o755)
     
 
 def build():
