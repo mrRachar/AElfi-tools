@@ -31,7 +31,7 @@ def download(module: str):
         print('loading module', name, 'from github:', address)
     else:
         name = module
-        with request.urlopen('https://raw.githubusercontent.com/mrRachar/AElfi-tools/upcoming/rsc/get_listings.json') as listings_file:
+        with request.urlopen('https://raw.githubusercontent.com/mrRachar/AElfi-tools/master/rsc/get_listings.json') as listings_file:
             listings = json.loads(listings_file.read().decode('utf-8'))
             address = listings[name]
             print('loading module', name, 'from', address, '...')
