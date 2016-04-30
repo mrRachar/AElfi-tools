@@ -8,9 +8,10 @@ aelfi project build                                 # Build the aelfi project (i
 aelfi tools info                                    # Get info about aelfi
 aelfi -h                                            # AElfi command tool help
 aelfi project -d /var/www/myproject build           # Build a project at the given directory 
-                                                    # (same can be done with make)
+                                                    #  (same can be done with make)
 aelfi get gloss                                     # Install module "gloss"
-aelfi get g/exampleuser/exampleProject              # Install GitHub user "exampleuser"'s repository "exampleProject" as a module
+aelfi get g/exampleuser/exampleProject              # Install GitHub user "exampleuser"'s
+                                                    #  repository "exampleProject" as a module
 ```
 
 #### Install
