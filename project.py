@@ -46,12 +46,16 @@ def run(args):
         build()
 
 def make(location, version, get=None):
-    if version is None or location == '':
-        print('Please make sure that both the project name and AElfi version are given')
+    if location == '':
+        print('Please make sure that both the project name is given')
         sys.exit()
+    if version == None:
+        with request.urlopen('https://raw.githubusercontent.com/mrRachar/AElfi-tools/upcoming/rsc/latestaelfi.txt') as versionfile:
+            version = versionfile.read().decode('utf-8')
     v, r = re.match(r'v?(\d+\.\d+\.\d)+(?:[\-\_\/\\]?r(\d+))?', version).groups()
     version = '{}'.format(v) if not r else '{}-r{}'.format(v, r)
-    
+
+    print('starting download ...')
     if not get:
         zip_file = request.urlopen('https://github.com/mrRachar/AElfi/archive/v{v}.zip'.format(v=version))
     else:
@@ -62,16 +66,25 @@ def make(location, version, get=None):
     temporary_zip.write(zip_file.read())
     zip_file.close()
     temporary_zip.close()
+    print('download complete ...')
     
     temporary_zip = zipfile.ZipFile(location + '_make_temp' '/AElfi.zip', 'r')
     temporary_zip.extractall(location + '_make_temp' '/AElfi')
     temporary_zip.close()
+    print('extracted zip ...')
 
     os.replace(location + '_make_temp' '/AElfi/AElfi-{v}'.format(v=version), location + '/')
     shutil.rmtree(location + '_make_temp')
+    print('set up in', location + '/', '...')
+
+    print('cleaning up', '...')
+    for dirname, dirs, files in os.walk(location + '/'):
+        for file in files:
+            os.chmod(dirname + '/' + file, 0o755)
+    print('finised!')
     
 
 def build():
-    subprocess.call([python_name, 'AElfi/build.py'])
+    subprocess.call([python_name, './AElfi/build.py'])
 
     
