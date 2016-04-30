@@ -3,7 +3,7 @@
 
 import argparse, re, subprocess, urllib.request as request, zipfile, shutil, os, sys
 
-python_name = 'python'
+python_name = 'python3'
 aelfi_tools_folder = os.path.dirname(__file__)
 
 def run(args):
