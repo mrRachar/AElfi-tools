@@ -26,29 +26,40 @@ def run(args):
 
 def download(module: str):
     if module.startswith(('g/', 'gh/', 'github/')):
+        module = '/'.join(module.split('/')[1:])
         name, address = module.split('/')[1], 'https://github.com/{module}/archive/master.zip'.format(module=module)
+        print('loading module', name, 'from github:', address)
     else:
         name = module
-        with request.urlopen('https://raw.githubusercontent.com/mrRachar/AElfi-tools/master/rsc/get_listings.json') as listings_file:
-            listings = json.load(listings_file)
-            address = listings['name']
+        with request.urlopen('https://raw.githubusercontent.com/mrRachar/AElfi-tools/upcoming/rsc/get_listings.json') as listings_file:
+            listings = json.loads(listings_file.read().decode('utf-8'))
+            address = listings[name]
+            print('loading module', name, 'from', address, '...')
 
+    print('starting download ...')
     zip_file = request.urlopen(address)
     os.makedirs(os.path.dirname('AElfi/modules/_temp/download.zip'), exist_ok=True)
     temporary_zip = open('AElfi/modules/_temp/download.zip', 'wb')
     temporary_zip.write(zip_file.read())
     zip_file.close()
     temporary_zip.close()
+    print('download complete ...')
 
     temporary_zip = zipfile.ZipFile('AElfi/modules/_temp/download.zip', 'r')
     temporary_zip.extractall('AElfi/modules/_temp/download')
     temporary_zip.close()
     os.remove('AElfi/modules/_temp/download.zip')
+    print('extracted zip ...')
 
     shutil.rmtree('AElfi/modules/{}/'.format(name), ignore_errors=True)
-    os.replace('AElfi/modules/_temp/download/{}-master'.format(name), 'AElfi/modules/{}/'.format(name))
+    location, directories = next(os.walk(r'C:\Users\Mattross\Documents\My Programming\Python Projects\testwebapp\AElfi\modules\_temp\download'))[:2]
+    directory = directories[0]
+    os.replace(location + '/' + directory, 'AElfi/modules/{}/'.format(name))
+    print('moved to', 'AElfi/modules/{}/'.format(name), '...')
     shutil.rmtree('AElfi/modules/_temp/')
 
+    print('cleaning up', '...')
     for dirname, dirs, files in os.walk('AElfi/modules/{}/'.format(name)):
         for file in files:
             os.chmod(dirname + '/' + file, 0o755)
+    print('finised!')

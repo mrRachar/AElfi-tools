@@ -51,7 +51,8 @@ def make(location, version, get=None):
         sys.exit()
     v, r = re.match(r'v?(\d+\.\d+\.\d)+(?:[\-\_\/\\]?r(\d+))?', version).groups()
     version = '{}'.format(v) if not r else '{}-r{}'.format(v, r)
-    
+
+    print('starting download ...')
     if not get:
         zip_file = request.urlopen('https://github.com/mrRachar/AElfi/archive/v{v}.zip'.format(v=version))
     else:
@@ -62,17 +63,22 @@ def make(location, version, get=None):
     temporary_zip.write(zip_file.read())
     zip_file.close()
     temporary_zip.close()
+    print('download complete ...')
     
     temporary_zip = zipfile.ZipFile(location + '_make_temp' '/AElfi.zip', 'r')
     temporary_zip.extractall(location + '_make_temp' '/AElfi')
     temporary_zip.close()
+    print('extracted zip ...')
 
     os.replace(location + '_make_temp' '/AElfi/AElfi-{v}'.format(v=version), location + '/')
     shutil.rmtree(location + '_make_temp')
+    print('set up in', location + '/', '...')
 
+    print('cleaning up', '...')
     for dirname, dirs, files in os.walk(location + '/'):
         for file in files:
             os.chmod(dirname + '/' + file, 0o755)
+    print('finised!')
     
 
 def build():
