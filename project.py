@@ -3,7 +3,7 @@
 
 import argparse, re, subprocess, urllib.request as request, zipfile, shutil, os, sys
 
-python_name = 'python3'
+python_name = 'python'
 aelfi_tools_folder = os.path.dirname(__file__)
 
 def run(args):
@@ -72,10 +72,10 @@ def make(location, version, get=None):
 
     for dirname, dirs, files in os.walk(location + '/'):
         for file in files:
-            os.chmod(file, 0o755)
+            os.chmod(dirname + '/' + file, 0o755)
     
 
 def build():
-    subprocess.call([python_name, 'AElfi/build.py'])
+    subprocess.call([python_name, './AElfi/build.py'])
 
     
