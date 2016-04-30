@@ -52,7 +52,7 @@ def make(location, version, get=None):
     if version == None:
         with request.urlopen('https://raw.githubusercontent.com/mrRachar/AElfi-tools/upcoming/rsc/latestaelfi.txt') as versionfile:
             version = versionfile.read().decode('utf-8')
-    v, r = re.match(r'v?(\d+\.\d+\.\d)+(?:[\-\_\/\\]?r(\d+))?', version).groups()
+    v, r = re.match(r'v?(\d+\.\d+\.\d)(?:[\-\_\/\\]?r(\d+))?', version).groups()
     version = '{}'.format(v) if not r else '{}-r{}'.format(v, r)
 
     print('starting download ...')
