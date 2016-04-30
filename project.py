@@ -50,7 +50,7 @@ def make(location, version, get=None):
         print('Please make sure that both the project name is given')
         sys.exit()
     if version == None:
-        with request.urlopen('https://raw.githubusercontent.com/mrRachar/AElfi-tools/upcoming/rsc/latestaelfi.txt') as versionfile:
+        with request.urlopen('https://raw.githubusercontent.com/mrRachar/AElfi-tools/master/rsc/latestaelfi.txt') as versionfile:
             version = versionfile.read().decode('utf-8')
     v, r = re.match(r'v?(\d+\.\d+\.\d)(?:[\-\_\/\\]?r(\d+))?', version).groups()
     version = '{}'.format(v) if not r else '{}-r{}'.format(v, r)
