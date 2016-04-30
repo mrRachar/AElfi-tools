@@ -52,7 +52,7 @@ def download(module: str):
     print('extracted zip ...')
 
     shutil.rmtree('AElfi/modules/{}/'.format(name), ignore_errors=True)
-    location, directories = next(os.walk(r'C:\Users\Mattross\Documents\My Programming\Python Projects\testwebapp\AElfi\modules\_temp\download'))[:2]
+    location, directories = next(os.walk('AElfi/modules/_temp/download'))[:2]
     directory = directories[0]
     os.replace(location + '/' + directory, 'AElfi/modules/{}/'.format(name))
     print('moved to', 'AElfi/modules/{}/'.format(name), '...')
