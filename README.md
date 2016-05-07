@@ -3,7 +3,7 @@ A simple application manager for [AElfi](https://github.com/mrRachar/AElfi)
 
 #### Commands
 ```bash
-aelfi project make $YOUR-NEW-PROJECT-NAME$          # Make a new aelfi web-app from AElfi version 0.3.1
+aelfi project make $YOUR-NEW-PROJECT-NAME$          # Make a new aelfi web-app from the latest AElfi version
 aelfi project build                                 # Build the aelfi project (in the cwd)
 aelfi tools info                                    # Get info about aelfi
 aelfi -h                                            # AElfi command tool help
