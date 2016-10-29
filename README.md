@@ -10,8 +10,7 @@ aelfi -h                                            # AElfi command tool help
 aelfi project update                                # Update project to latest AElfi version
 aelfi project -d /var/www/myproject build           # Build a project at the given directory 
                                                     #  (same can be done with make)
-aelfi get gloss                                     # Install module "gloss"
-aelfi get g/exampleuser/exampleProject              # Install GitHub user "exampleuser"'s
+aelfi get mrRachargloss                             # Install module "gloss"
                                                     #  repository "exampleProject" as a module
 ```
 
