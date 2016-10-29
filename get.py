@@ -1,4 +1,4 @@
-import argparse, urllib.request as request, os, shutil, zipfile, json
+import argparse, urllib.request as request, urllib.error, os, shutil, zipfile
 
 def run(args):
     arg_parser = argparse.ArgumentParser(
@@ -25,19 +25,15 @@ def run(args):
         download(module)
 
 def download(module: str):
-    if module.startswith(('g/', 'gh/', 'github/')):
-        module = '/'.join(module.split('/')[1:])
-        name, address = module.split('/')[1], 'https://github.com/{module}/archive/master.zip'.format(module=module)
-        print('loading module', name, 'from github:', address)
-    else:
-        name = module
-        with request.urlopen('https://raw.githubusercontent.com/mrRachar/AElfi-tools/master/rsc/get_listings.json') as listings_file:
-            listings = json.loads(listings_file.read().decode('utf-8'))
-            address = listings[name]
-            print('loading module', name, 'from', address, '...')
+    name, address = module.split('/')[1], 'https://github.com/{module}/archive/master.zip'.format(module=module)
+    print('loading module', name, 'from github:', address)
 
     print('starting download ...')
-    zip_file = request.urlopen(address)
+    try:
+        zip_file = request.urlopen(address)
+    except urllib.error.HTTPError:
+        print('\nError: No such GitHub project')
+        raise SystemExit
     os.makedirs(os.path.dirname('AElfi/modules/_temp/download.zip'), exist_ok=True)
     temporary_zip = open('AElfi/modules/_temp/download.zip', 'wb')
     temporary_zip.write(zip_file.read())
