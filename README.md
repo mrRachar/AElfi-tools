@@ -1,4 +1,6 @@
-# AElfi-tools
+
+<p align="center"><img src='http://campars.net/AElfi/logo tools.svg'/></p>
+
 A simple application manager for [AElfi](https://github.com/mrRachar/AElfi)
 
 #### Commands
@@ -10,7 +12,7 @@ aelfi -h                                            # AElfi command tool help
 aelfi project update                                # Update project to latest AElfi version
 aelfi project -d /var/www/myproject build           # Build a project at the given directory 
                                                     #  (same can be done with make)
-aelfi get mrRachargloss                             # Install module "gloss"
+aelfi get mrRachar/gloss                            # Install module "gloss"
                                                     #  repository "exampleProject" as a module
 ```
 
